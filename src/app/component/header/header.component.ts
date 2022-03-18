@@ -1,6 +1,6 @@
 import { BookComponent } from './../book/book.component';
 import { Book } from './../../model/book';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BookServiceService } from 'src/app/service/bookService/book-service.service';
 import { Subscription } from 'rxjs';
 
@@ -18,34 +18,23 @@ export class HeaderComponent implements OnInit {
   books: Book[] = [];
   private subscribe: Subscription | undefined;
   message = '';
-  
+ 
   constructor(private BookServiceService: BookServiceService, private bookComponent: BookComponent) { }
 
 
   ngOnInit(): void {
-    //  this.Book.getList(this.keyWord,this.pageNum);
-    // console.log(this.Book.getList(this.keyWord,this.pageNum));
-  }
-
-  ngOnsubmit(keyWord: string) {
-    this.bookComponent.keyWord = keyWord;
-    console.log(this.bookComponent.keyWord);
-    // this.bookComponent.checkKeyWord();
-    this.bookComponent.ngOnInit();
+    this.BookServiceService.currentMessage.subscribe(message => this.message = message);
     
   }
-  // searchField() {
-  //   this.subscribe = this.BookServiceService.getList(this.keyWord, this.page).subscribe(data => {
-  //     if (data !== null) {
-  //       this.keyWord = data['content'];
-  //       this.totalPages = data['totalPages'];
-  //       this.size = data['size'];
-  //       this.pageable = data['pageable'].pageable;
-  //       this.message = 'aloo ok'
 
-  //     } else {
-  //       this.message = 'not found !!!'
-  //     }
-  //   });
-  // }
+  // @Output() tukhoa = new EventEmitter();
+  // index = 0;
+
+
+
+  newMessage(keyWord: string) {
+    this.BookServiceService.changeMessage(keyWord);
+    this.bookComponent.ngOnInit();
+  }
+
 }

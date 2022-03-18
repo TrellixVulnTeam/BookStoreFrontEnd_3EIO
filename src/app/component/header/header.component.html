@@ -27,15 +27,15 @@
       </div>
       <div class="col-md-3 col-xs-4 text-right hidden-xs menu-2">
         <ul>
-          
-          <form #searchNgForm="ngForm" (ngSubmit)="ngOnsubmit(keyWord)">
+          <!-- <button  class="btn btn-primary" (click)="search()">click me</button> -->
+          <form #searchNgForm="ngForm">
             <li class="search">
               <div class="input-group">
-                <input type="text" placeholder="Search..."[(ngModel)]="keyWord" [ngModelOptions]="{standalone: true}"
+                <input type="text" placeholder="Search..." [(ngModel)]="keyWord" [ngModelOptions]="{standalone: true}"
                   name="keyWord" [value]="[keyWord]">
                 <span class="input-group-btn">
-                  <button class="btn btn-primary" type="submit" [routerLink]="['/product']" (click)="ngOnsubmit(keyWord)"><i
-                      class="icon-search"></i></button>
+                  <button class="btn btn-primary" type="submit" [routerLink]="['/product']"
+                   (click)="newMessage(keyWord)" ><i class="icon-search"></i></button>
                 </span>
               </div>
             </li>

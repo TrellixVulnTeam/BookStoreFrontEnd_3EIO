@@ -1,20 +1,20 @@
 import { AppModule } from './../../app.module';
 import { HeaderComponent } from './../header/header.component';
 import { Book } from './../../model/book';
-import { Subscription } from 'rxjs';
+import { Subscription, BehaviorSubject } from 'rxjs';
 import { BookServiceService } from './../../service/bookService/book-service.service';
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, OnChanges, SimpleChanges, Input } from '@angular/core';
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.css']
 })
-@Injectable({providedIn: 'root'})
+// @Injectable({ providedIn: 'root' })
 export class BookComponent implements OnInit {
-  keyWord: string = "";
-  flagsearch = true;
-  subscription: Subscription | undefined
+  keyWord: string = '';
+  flagsearch: boolean = true;
+  subscription: Subscription | undefined;
   books: Book[] = [];
   pageable: number = 0;
   totalPages: number = 0;
@@ -23,44 +23,43 @@ export class BookComponent implements OnInit {
   sortField = 'id';
   sortDirection = 'asc';
   message = '';
+  message2 = '';
   check: number = 0;
   check2: number = 0;
-
-  constructor(private BookService: BookServiceService) { }
-
+  constructor(private BookService: BookServiceService) {
+  }
   ngOnInit(): void {
-    this.checkKeyWord();
+    this.BookService.currentMessage.subscribe(message => {this.message = message});
+    this.ShowList();
   }
-
-  checkKeyWord() {
-    if (this.keyWord === '') {
-      this.showList(this.keyWord,this.page);
-    } else{
-      this.page=0;
-      this.showList(this.keyWord,this.page);
-    }
-  }
-  showList(keyWord: string, page: number) {
-    this.subscription = this.BookService.getList(this.keyWord, page).subscribe(data => {
- 
-      
+  ShowList() {
+    this.subscription = this.BookService.getList(this.message, this.page).subscribe(data => {
       if (data !== null) {
         this.books = data['content'];
         console.log(this.books);
-        
+        console.log(this.message);
         this.totalPages = data['totalPages'];
         this.size = data['size'];
         this.pageable = data['pageable'].pageable;
-        this.message = 'alo listBook ok'
+        this.message2 = 'alo listBook ok';
       } else {
-        this.message = 'not found !!!'
+        this.message2 = 'not found !!!'
       }
     })
   }
+  // dem =0;
+  //   hienthitukhoa(dem: number){
+  //     console.log(dem);
 
+  //   }
+
+
+
+
+  //Phan trang
   loadMore(index: number) {
     this.check2 = this.page + index;
-    if (this.check2 < this.size / 2) {
+    if (this.check2 < this.size / 3) {
       this.page = this.check2;
       this.ngOnInit();
     }

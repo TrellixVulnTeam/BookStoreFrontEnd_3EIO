@@ -6,8 +6,8 @@
     "configurations": [
 
         {
-            "command": "npm start",
-            "name": "Run npm start",
+            "command": "ng serve",
+            "name": "Run host",
             "request": "launch",
             "type": "node-terminal"
         }

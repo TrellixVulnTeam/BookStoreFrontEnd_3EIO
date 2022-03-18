@@ -35,7 +35,9 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    BookComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

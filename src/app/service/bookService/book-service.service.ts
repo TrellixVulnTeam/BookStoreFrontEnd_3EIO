@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,5 +10,12 @@ export class BookServiceService {
 
   getList(keyWord: string, page: number): Observable<any> {
     return this.httpClient.get(this.api + 'search?keyWord=' + keyWord + '&page=' + page);
+  }
+
+  //thư viện rxjs behavior subject
+  private messageSource = new BehaviorSubject('');
+  currentMessage = this.messageSource.asObservable();
+  changeMessage(message: string) {
+    this.messageSource.next(message);
   }
 }

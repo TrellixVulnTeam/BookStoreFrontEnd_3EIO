@@ -29,7 +29,7 @@ export class BookComponent implements OnInit {
   constructor(private BookService: BookServiceService) {
   }
   ngOnInit(): void {
-    this.BookService.currentMessage.subscribe(message => {this.message = message});
+    this.BookService.currentMessage.subscribe(message => { this.message = message });
     this.ShowList();
   }
   ShowList() {
@@ -38,9 +38,9 @@ export class BookComponent implements OnInit {
         this.books = data['content'];
         console.log(this.books);
         console.log(this.message);
-        this.totalPages = data['totalPages'];
-        this.size = data['size'];
-        this.pageable = data['pageable'].pageable;
+        this.totalPages = data.totalPages;
+        this.size = data.size;
+        this.pageable = data.pageable;
         this.message2 = 'alo listBook ok';
       } else {
         this.message2 = 'not found !!!'
@@ -52,7 +52,11 @@ export class BookComponent implements OnInit {
   //     console.log(dem);
 
   //   }
-
+  reFresh(keyWord: string) {
+    this.BookService.changeMessage(keyWord);
+    this.page = 0;
+    this.ngOnInit();
+  }
 
 
 

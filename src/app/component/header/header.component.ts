@@ -23,8 +23,7 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.BookServiceService.currentMessage.subscribe(message => this.message = message);
-    
+    this.BookServiceService.currentMessage.subscribe(message => this.message = message); 
   }
 
   // @Output() tukhoa = new EventEmitter();
@@ -34,7 +33,8 @@ export class HeaderComponent implements OnInit {
 
   newMessage(keyWord: string) {
     this.BookServiceService.changeMessage(keyWord);
-    this.bookComponent.ngOnInit();
+    this.ngOnInit();
+    // this.bookComponent.reFresh();
   }
 
 }

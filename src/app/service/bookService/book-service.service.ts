@@ -11,6 +11,10 @@ export class BookServiceService {
   getList(keyWord: string, page: number): Observable<any> {
     return this.httpClient.get(this.api + 'search?keyWord=' + keyWord + '&page=' + page);
   }
+  
+  getDetail(id: string): Observable<any>{
+    return this.httpClient.get(this.api + 'detail?id=' + id);
+  }
 
   //thư viện rxjs behavior subject
   private messageSource = new BehaviorSubject('');

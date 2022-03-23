@@ -47,11 +47,19 @@ export class BookComponent implements OnInit {
       }
     })
   }
-  // dem =0;
-  //   hienthitukhoa(dem: number){
-  //     console.log(dem);
+  checkingList(){
+    if (this.message==='' ) {
+      this.ShowList();
+    }
+    
+  }
+  sort(sortField: string) {
+    this.sortField = sortField;
+    this.sortDirection = (this.sortDirection === 'asc') ? 'desc' : 'asc';
+    // this.keyWord = '';
+    this.ngOnInit();
+  }
 
-  //   }
   reFresh(keyWord: string) {
     this.BookService.changeMessage(keyWord);
     this.page = 0;

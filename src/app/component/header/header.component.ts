@@ -1,4 +1,4 @@
-import { BookComponent } from './../book/book.component';
+import { BookComponent } from './../book/book-list/book.component';
 import { Book } from './../../model/book';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BookServiceService } from 'src/app/service/bookService/book-service.service';

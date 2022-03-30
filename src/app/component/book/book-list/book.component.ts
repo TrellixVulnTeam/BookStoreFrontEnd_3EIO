@@ -1,9 +1,8 @@
-import { BookServiceService } from './../../../service/bookService/book-service.service';
-import { AppModule } from './../../app.module';
-import { HeaderComponent } from './../header/header.component';
-import { Book } from './../../model/book';
+import { AppModule } from './../../../app.module';
+import { HeaderComponent } from './../../header/header.component';
+import { Book } from './../../../model/book';
 import { Subscription, BehaviorSubject } from 'rxjs';
-import { BookServiceService } from './../../service/bookService/book-service.service';
+import { BookServiceService } from './../../../service/bookService/book-service.service';
 import { Component, OnInit, Injectable, OnChanges, SimpleChanges, Input } from '@angular/core';
 
 @Component({

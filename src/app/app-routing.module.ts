@@ -8,7 +8,7 @@ import { OrderComponent } from './component/order/order.component';
 const routes: Routes = [
   {
     path: 'product',
-    loadChildren: () => import('./component/book/book.module').then(module => module.BookRoutingModule)
+    loadChildren: () => import('./component/book/book-routing.module').then(module => module.BookRoutingRoutingModule)
   },
   {
     path: 'home', component: HomeComponent

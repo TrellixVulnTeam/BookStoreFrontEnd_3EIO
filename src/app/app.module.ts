@@ -1,9 +1,10 @@
+import { BookComponent } from './component/book/book-list/book.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { BookComponent } from './component/book/book.component';
+
 import { CustomerComponent } from './component/customer/customer.component';
 import { EmployeeComponent } from './component/employee/employee.component';
 import { OrderComponent } from './component/order/order.component';
